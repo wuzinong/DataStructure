@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>散列</title>
+</head>
+ 
+<body>
+ 
+     <script type="text/javascript">
+           function HashTable(){
+                this.table = new Array(137);
+                this.simpleHash = simpleHash;
+                this.showDistro = showDistro;
+                this.put = put;
+                //this.get = get;
+           }
+           function simpleHash(data){
+                var total = 0;
+                for(var i=0;i<data.length;++i){
+                    total += data.charCodeAt(i);
+                }
+                return total % this.table.length;
+           }
+           function buildChains(){
+               for(var i=0;i<this.table.length;++i){
+                   this.table[i] = new Array();
+               }
+           }
+           function showDistro(){
+               var n = 0;
+               for(var i=0;i<this.table.length;++i){
+                   if(this.table[i][0] != undefined){
+                       console.log(this.table[i]);
+                   }
+               }
+           }
+           function betterHash(string,arr){
+               var H = 37;
+               var total = 0;
+               for(var i=0;i<string.length;++i){
+                   total += H*total + string.charCodeAt(i);
+               }
+               total = total % arr.length;
+               return parseInt(total);
+           }
+           //simple put
+           function put(data){
+               var pos = this.simpleHash(data);
+               this.table[pos] = data;
+           }
+           //complicated put
+           function put(key,data){
+               var pos = this.betterHash(key);
+               var index =0;
+               if(this.table[pos][index] == undefined){
+                   this.table[pos][index+1] = data;
+               }
+               ++index;
+               else{
+                   while(this.table[pos][index] != undefined){
+                       ++index;
+                   }
+                   this.table[pos][index+1] = data;
+               }
+           }
+           function get(key){
+               var index = 0;
+               var hash = this.betterHash(key);
+               if(this.table[pos][index] = key){
+                  return this.table[pos][index+1];
+               }
+               index += 2;
+               else{
+                  while(this.table[pos][index] != key){
+                      index +=2;
+                  }
+                  return this.table[pos][index+1];
+               }
+               return undefined;
+           }
+           function showDistro(){
+               var n =0;
+               for(var i=0;i<this.table.length;++i){
+                   if(this.table[i] != undefined){
+                      console.log(i + ": "+this.table[i]);
+                   }
+               }
+           }
+           function getRandomInt(min,max){
+               return Math.floor(Math.random()*(max-min+1))+min;
+           }
+           function genStuData(arr){
+               for(var i=0;i<arr.length;++i){
+                   var num = "";
+                   for(var j=1;j<=9;++j){
+                      num += Math.floor(Math.random()*10);
+                   }
+                   num += getRandomInt(50,100);
+                   arr[i] = num;
+               }
+           }
+          var someNames = ["David", "Jennifer", "Donnie", "Raymond",
+                    "Cynthia", "Mike", "Clayton", "Danny", "Jonathan"];
+               
+          var hTable = new HashTable();
+          for (var i = 0; i < someNames.length; ++i) {
+              hTable.put(someNames[i]);
+          }
+          hTable.showDistro();
+     </script>
+</body>
+</html>
