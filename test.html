@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字典</title>
+</head>
+ 
+<body>
+ 
+     <script type="text/javascript">
+          function Node(data){
+               this.data = data;
+               this.left = null;
+               this.right= null;
+               this.show = show;
+          }
+          function show(){
+              console.log(this.data);
+          }
+          function BST(){
+              this.root = null;
+              this.insert = insert;
+          }
+          function getMin(){
+              var current = this.root;
+              while(!(current.left==null)){
+                  current = current.left;
+              }
+              return current.data;
+          }
+          function insert(data){
+              var n = new Node(data);
+              if(this.root == null){
+                 this.root = n;
+              }else{
+                 var current = this.root;
+                 var parent;
+                 while(true){
+                     parent = current;
+                     if(data < parent.data){
+                         current = current.left;
+                        if(parent.left == null){
+                            parent.left = n;
+                            break;
+                        }
+                     }else{
+                         current = current.right;
+                         if(parent.right == null){
+                            parent.right = n;
+                            break;
+                         }
+                     }
+                 }
+              }
+          }
+          function preOrder(node){
+             if(!(node == null)){
+                node.show();
+                preOrder(node.left);
+                preOrder(node.right);
+             }
+          }
+          var nums = new BST();
+          nums.insert(23);
+          nums.insert(45);
+          nums.insert(16);
+          nums.insert(37);
+          nums.insert(3);
+          nums.insert(99);
+          nums.insert(22);
+          console.log(nums);
+          preOrder(nums.root);
+     </script>
+</body>
+</html>
