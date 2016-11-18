@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+<!-- 	  <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/jquery.js"></script>
+    <script src="build/browser.min.js"></script>
+
+ -->
+    <!--    <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://npmcdn.com/remarkable@1.6.2/dist/remarkable.min.js"></script> -->
+ 
+</head>
+<body>
+
+    <div id="container" class="scale">
+       
+    </div>
+
+	<script type="text/babel">
+        
+	</script>
+    
+    <script type="text/javascript">
+         //快排
+        var arr = [2,33,4,-2,33,54,34,65,29];
+
+        function quickSort(arr){
+          if(arr.length<=1){
+             return arr;
+          }
+           var left = [];
+           var right = [];
+           var num = Math.floor(arr.length/2);
+           var rN = arr.splice(num,1);
+           for(var i=0,l=arr.length;i<l;i++){
+                 if(arr[i]<=rN){
+                   left.push(arr[i]);
+                 }else{
+                   right.push(arr[i]);
+                 }
+           }
+           return quickSort(left).concat(rN,quickSort(right));
+        }
+         console.log(quickSort(arr));
+
+         var arr = [2,33,4,-2,33,54,34,65,29];
+        //冒泡
+        function bubbleSort(arr){
+            for(var i=0 ;i<arr.length;i++){
+                for(var k=0;k<arr.length;k++){
+                    if(arr[i]<arr[k]){
+                       var temp = arr[i];
+                       arr[i] = arr[k];
+                       arr[k] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+      console.log(quickSort(arr));
+
+      //一种promise实现
+      // var Promise = function(affair){
+      //     this.state = "pending";
+      //     this.affair = affair || function(o){return o;};
+      //     this.allAffairs = [];
+      // }
+      // Promise.prototype.then = function (nextAffair){
+      //     var promise = new Promise();
+      //     if(this.state == "resolved"){
+      //         return this._fire(promise,nextAffair);
+      //     }else{
+      //         return this._push(promise,nextAffair);
+      //     }
+      // }
+      // Promise.prototype._fire = function(nextPromise,nextAffair){
+      //    var nextResult = nextAffair(this.result);
+      //    if(nextResult instanceof Promise){
+      //        nextResult.then(function(obj){
+      //             console.log("obj"+obj);
+      //             nextPromise.resolve(obj);
+      //        })
+      //    }else{
+      //       nextPromise.resolve(nextResult);
+      //    }
+      //    return nextPromise;
+      // }
+      // Promise.prototype.resolve = function(obj){
+      //     if(this.state != 'pending'){
+      //        throw ("finished");
+      //     }
+      //     this.state = "resolved";
+      //     this.result = this.affair(obj);
+      //     for(var i=0,len=this.allAffairs.length;i<len;++i){
+      //         var affair = this.allAffairs[i];
+      //         this._fire(affair.promise,affair.affair);
+      //     }
+      // }
+      // Promise.prototype._push = function(nextPromise,nextAffair){
+      //      this.allAffairs.push({
+      //          promise:nextPromise,
+      //          affair:nextAffair
+      //      });  
+      //      return nextPromise;
+      // }
+      // var promise = new Promise(function(data){
+      //     console.log(data);
+      //     return 1;
+      // });
+      // // 添加事务
+      // promise.then(function(data){
+      //     console.log(data);
+      //     return 2;
+      // }).then(function(data){
+      //     console.log(data);
+      //     var p = new Promise();
+      //     setTimeout(function(){
+      //         p.resolve("dddd")
+      //     },3000)
+      //     return p;
+      // }).then(function(data){
+      //     console.log(data);
+      //     console.log("end");
+      // });
+      // // 启动事务
+      // promise.resolve("start");
+        
+
+    </script>
+</body>
+</html>
